@@ -1,0 +1,18 @@
+## S3 fileupload for rails
+
+A file upload plugin that simplifies direct uploads to amazon s3 for rails. It is based on the awesome [jquery fileupload](https://github.com/blueimp/jQuery-File-Upload) project,Ryan Bates's railscasts [ep383 example](https://github.com/railscasts/383-uploading-to-amazon-s3/tree/master/gallery-jquery-fileupload) and pjambet's [blog post](http://pjambet.github.com/blog/direct-upload-to-s3/).
+
+## Install
+> Add to Gemfile and run bundle install
+
+```ruby
+gem 's3_fileupload_rails', git: 'https://github.com/allen13/s3_fileupload_rails'
+```
+
+> Mount Engine in routes.rb
+
+```ruby
+Rails.application.routes.draw do
+  mount S3FileuploadRails::Engine => "/s3_fileupload_rails"
+end
+```
