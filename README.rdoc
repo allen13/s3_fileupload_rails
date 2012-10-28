@@ -1,3 +1,0 @@
-= S3FileuploadRails
-
-This project rocks and uses MIT-LICENSE.
