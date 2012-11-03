@@ -1,0 +1,24 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %title S3 Fileupload Rails
+    =stylesheet_link_tag "application"
+  %body
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container-fluid
+          %a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a.brand{:href => "#"} S3 Fileupload Rails
+          .nav-collapse
+            %p.navbar-text.pull-right
+              Check it out on
+              %a{:href => "https://github.com/allen13/s3_fileupload_rails"} Github
+    .container-fluid
+      = yield
+      %hr/
+    = javascript_include_tag 'application'
+    

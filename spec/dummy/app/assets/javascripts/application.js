@@ -12,4 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap
+//=require jquery-fileupload/basic
+//= require s3_fileupload
 //= require_tree .

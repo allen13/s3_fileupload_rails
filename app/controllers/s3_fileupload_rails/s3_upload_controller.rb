@@ -8,9 +8,9 @@ module S3FileuploadRails
 
   	def index
       render json: {
-        policy: s3_upload_policy_document,
-        signature: s3_upload_signature,
-        key: "uploads/#{SecureRandom.uuid}/"
+        policy: policy,
+        signature: signature,
+        key: key
       }
     end
 
@@ -41,5 +41,37 @@ module S3FileuploadRails
           )
         ).gsub(/\n/, '')
       end
+
+    def key
+      "uploads/#{SecureRandom.uuid}/#{(params[:file] if params)}"
+    end
+
+    def policy
+      Base64.encode64(policy_data.to_json).gsub("\n", "")
+    end
+
+    def policy_data
+      {
+        expiration: 10.hours.from_now,
+        conditions: [
+          ["starts-with", "$utf8", ""],
+          ["starts-with", "$key", ""],
+          ["content-length-range", 0, 500.megabytes],
+          {bucket: (ENV['AWS_S3_BUCKET'] ||= "")},
+          {acl: "public-read"}
+        ]
+      }
+    end
+
+    def signature
+      Base64.encode64(
+        OpenSSL::HMAC.digest(
+          OpenSSL::Digest::Digest.new('sha1'),
+          ENV['AWS_SECRET_ACCESS_KEY'] ||= "", 
+          policy
+        )
+      ).gsub("\n", "")
+    end
+
   end
 end

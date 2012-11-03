@@ -1,3 +1,9 @@
-#h3 S3 File Upload
-
-= s3_uploader_form post: 'paintings_url', as: "painting[image_url]"
+.row
+  .span12
+    = s3_fileupload_form
+.row
+  .span12
+    #s3-fileupload-progress-set
+      .progress.progress-striped.active
+        .bar
+    #s3-fileupload-images
