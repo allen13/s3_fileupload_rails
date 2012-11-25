@@ -1,3 +1,9 @@
+require 'jquery-fileupload-rails'
+require 'jquery-rails'
+require 'sass-rails'
+require 'ruby-haml-js'
+require 'coffee-rails'
+
 module S3FileuploadRails
   class Engine < ::Rails::Engine
     isolate_namespace S3FileuploadRails

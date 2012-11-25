@@ -1,4 +1,7 @@
 (($) ->
+  uploading = JST["s3_fileupload/templates/uploading"]
+  complete = JST["s3_fileupload/templates/complete"]
+
   createUploadInfo = (form,file_name) ->
     upload_info = JSON.parse($.ajax(
       type: "GET"
@@ -24,28 +27,27 @@
         type: "POST"
         autoUpload: true
         add: (event, data) ->
-          data.file_path = createUploadInfo(form,data.files[0].name)
+          file_name = data.files[0].name
+          data.file_path = createUploadInfo(form,file_name)
+          data.view = $(uploading({title: file_name}))
+          $("#s3-images").append(data.view)
           data.submit()
-
-        send: (e, data) ->
-          $(".progress").fadeIn()
   
         progress: (e, data) ->
           percent = Math.round((e.loaded / e.total) * 100)
-          $(".bar").css "width", percent + "%"
+          data.view.find(".bar").css "width", percent + "%"
   
         fail: (e, data) ->
           console.log "S3 fileupload plugin failed."
   
         done: (event, data) ->
           console.log data.file_path
-          $("#s3-fileupload-images").append("<img src='#{data.file_path}' class='img-rounded'/>")
-          $(".progress").fadeOut 300, ->
-            $(".bar").css "width", 0
+          data.view.replaceWith(complete(img_path:data.file_path))
+
       s3opts = $.merge(s3opts, opts)
       $(this).fileupload(s3opts)
-) jQuery
 
-$('.s3-fileupload').s3fileupload()
+  $('.s3-fileupload').s3fileupload()
+) jQuery
 
 

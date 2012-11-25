@@ -6,7 +6,7 @@ module S3FileuploadRails
         uploader.s3_fields.map do |name, value|
           hidden_field_tag(name, value)
         end.join.html_safe +
-        file_field_tag(:file, multiple: true) +
+        # file_field_tag(:file, multiple: true) +
         (capture(&block) if block)
       end
     end

@@ -1,0 +1,3 @@
+.span3
+  .add-box.img-polaroid
+    %img{src:img_path}

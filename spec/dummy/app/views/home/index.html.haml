@@ -1,11 +1,32 @@
 .row
-  .span12
-    = s3_fileupload_form
-.row.uploaded-images
+  #s3-images
+    .span3
+      .img-polaroid.add-box
+        %i.icon-camera-retro.pic
+    .span3
+      .img-polaroid.add-box
+        %i.icon-camera-retro.pic
+    .span3
+      .img-polaroid.add-box
+        %i.icon-camera-retro.pic
+    .span3
+      .img-polaroid.add-box
+        %i.icon-camera-retro.pic
+    .span3
+      .img-polaroid.add-box
+        %i.icon-camera-retro.pic
+    .span3
+      .img-polaroid.add-box
+        %i.icon-camera-retro.pic
+    .span3
+      .img-polaroid.add-box
+        .upload
+          .title file.jpg
+          .progress.progress-striped.active
+            .bar{style:'width:20%;'}
   .span3
-    %img.img-rounded{}
-  .span12
-    #s3-fileupload-progress-set
-      .progress.progress-striped.active
-        .bar
-    #s3-fileupload-images
+    .img-polaroid.add-box
+      = s3_fileupload_form do
+        .btn.fileinput-button.add
+          %i.icon-plus.add
+          = file_field_tag(:file, multiple: true)

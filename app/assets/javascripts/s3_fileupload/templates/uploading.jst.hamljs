@@ -1,0 +1,6 @@
+.span3
+  .img-polaroid.add-box
+    .upload
+      .title=title
+      .progress.progress-striped.active
+        .bar
